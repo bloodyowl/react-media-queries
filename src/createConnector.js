@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react"
-import warning from "./utils/warning"
-import getCollidingKey from "./utils/getCollidingKey"
+import warning from "./warning"
+import getCollidingKey from "./getCollidingKey"
 
 const defaultMergeProps = (ownProps, mediaProps, componentProps) => {
   if(process.env.NODE_ENV !== "production") {

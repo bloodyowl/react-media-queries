@@ -1,15 +1,15 @@
 {
   "name": "react-media-queries",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "provider and decorator to manage media queries with react",
-  "main": "dist",
+  "main": "lib/index.js",
   "files": [
-    "dist",
+    "lib",
     "package.json",
     "README.md"
   ],
   "scripts": {
-    "start": "babel --stage 0 src --out-dir dist",
+    "start": "babel --stage 0 src --out-dir lib --ignore '__tests__'",
     "examples": "babel-node --stage 0 ./scripts/webpack/examples",
     "test": "babel-node --stage 0 ./scripts/webpack/test.js"
   },

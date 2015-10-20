@@ -66,11 +66,11 @@ const WrappedApp = matchMedia(resolveComponents)(App)
 
 ## listeners
 
-### composeListener (react-media-queries/listeners/composeListeners)
+### composeListener (react-media-queries/lib/composeListeners)
 
 can be used to compose multiple listeners into one
 
-### viewportListener (react-media-queries/listeners/viewportListener)
+### viewportListener (react-media-queries/lib/viewportListener)
 
 listens to viewport size changes
 
@@ -93,11 +93,11 @@ const debouncedViewportListener = (update) => {
 
 ## getters
 
-### composeGetters (react-media-queries/getters/composeGetters)
+### composeGetters (react-media-queries/lib/composeGetters)
 
 can be used to compose multiple getters into one
 
-### viewportGetters (react-media-queries/getters/viewportGetter)
+### viewportGetters (react-media-queries/lib/viewportGetter)
 
 gets the current viewport state
 
