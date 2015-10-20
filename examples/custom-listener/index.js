@@ -1,7 +1,7 @@
 import React from "react"
 import { render } from "react-dom"
 import { matchMedia, MediaProvider } from "../../src"
-import viewportGetter from "../../src/getters/viewportGetter"
+import viewportGetter from "../../src/viewportGetter"
 
 import "./index.html"
 

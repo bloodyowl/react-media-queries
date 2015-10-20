@@ -1,8 +1,8 @@
 import React from "react"
 import { render } from "react-dom"
 import { matchMedia, MediaProvider } from "../../src"
-import viewportListener from "../../src/listeners/viewportListener"
-import viewportGetter from "../../src/getters/viewportGetter"
+import viewportListener from "../../src/viewportListener"
+import viewportGetter from "../../src/viewportGetter"
 
 import "./index.html"
 
