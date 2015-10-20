@@ -1,6 +1,6 @@
 {
   "name": "react-media-queries",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "provider and decorator to manage media queries with react",
   "main": "dist",
   "files": [
@@ -28,6 +28,9 @@
     "url": "https://github.com/bloodyowl/react-media-queries/issues"
   },
   "homepage": "https://github.com/bloodyowl/react-media-queries",
+  "peerDependencies": {
+    "react": "^0.14.0"
+  },
   "devDependencies": {
     "babel": "^5.8.23",
     "babel-core": "^5.8.25",
