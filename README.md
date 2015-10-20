@@ -21,9 +21,9 @@ $ npm install --save react-media-queries
 ```javascript
 import React from "react"
 import { render } from "react-dom"
-import { MediaProvider } from "../../src"
-import viewportListener from "react-media-queries/listeners/viewportListener"
-import viewportGetter from "react-media-queries/getters/viewportGetter"
+import { MediaProvider } from "react-media-queries"
+import viewportListener from "react-media-queries/lib/viewportListener"
+import viewportGetter from "react-media-queries/lib/viewportGetter"
 
 
 render(
