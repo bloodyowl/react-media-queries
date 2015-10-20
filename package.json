@@ -1,0 +1,44 @@
+{
+  "name": "react-media-queries",
+  "version": "1.0.0",
+  "description": "provider and decorator to manage media queries with react",
+  "main": "dist",
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "babel --stage 0 src --out-dir dist",
+    "examples": "babel-node --stage 0 ./scripts/webpack/examples",
+    "test": "babel-node --stage 0 ./scripts/webpack/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bloodyowl/react-media-queries"
+  },
+  "keywords": [
+    "react",
+    "media-query",
+    "inline-styles"
+  ],
+  "author": "bloodyowl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bloodyowl/react-media-queries/issues"
+  },
+  "homepage": "https://github.com/bloodyowl/react-media-queries",
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.25",
+    "babel-loader": "^5.3.2",
+    "file-loader": "^0.8.4",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "tape": "^4.2.1",
+    "tape-catch": "^1.0.4",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1",
+    "webpack-jsdom-tape-plugin": "^1.2.0"
+  }
+}
