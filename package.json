@@ -1,6 +1,6 @@
 {
   "name": "react-media-queries",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "provider and decorator to manage media queries with react",
   "main": "dist",
   "files": [

@@ -2,8 +2,8 @@ var warning = () => {}
 
 if(
   process.env.NODE_ENV !== "production" &&
-  window.console &&
-  window.console.error
+  typeof console !== "undefined" &&
+  typeof console.error === "function"
 ) {
   warning = function(condition, message, ...args) {
     if(condition) {
