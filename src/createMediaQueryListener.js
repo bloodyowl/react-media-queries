@@ -1,6 +1,6 @@
 const createMediaQueryListener = (mediaQueries) => (update) => {
-  const mqlList = Object.keys(mediaQueries).map((size) => {
-    const mql = window.matchMedia(mediaQueries[size])
+  const mqlList = Object.keys(mediaQueries).map((alias) => {
+    const mql = window.matchMedia(mediaQueries[alias])
     mql.addListener(update)
     return mql
   })

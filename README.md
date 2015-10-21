@@ -1,22 +1,29 @@
 # react-media-queries
 
-## install
+Extensible Media Queries for React.
+
+## Install
 
 ```console
 $ npm install --save react-media-queries
 ```
 
-## api
+## API
 
-### <MediaProvider />
+### `<MediaProvider />`
 
-#### props
+A component that provides Media Query data to the `matchMedia()` calls in the
+component hierarchy below. You can't use `matchMedia()` without wrapping the a
+component (e.g., the root component) in `<MediaProvider>`.
 
-- `initialMedia`, object, to provide default values for server-side rendering
-- `getMedia`, function that returns the current global media state
-- `listener`, func that listens to the media changes, and returns a function that stops listening
+#### Props
 
-#### example
+* `children` (*ReactElement*) The root of your component hierarchy.
+- `getMedia` (*Function*): Return the current global media state.
+- `initialMedia` (*Object*): Provide default values for server-side rendering.
+- `listener` (*Function*): Listens to media changes, and returns a function that stops listening.
+
+#### Example
 
 ```javascript
 import React from "react"
@@ -25,79 +32,119 @@ import { MediaProvider } from "react-media-queries"
 import viewportListener from "react-media-queries/lib/viewportListener"
 import viewportGetter from "react-media-queries/lib/viewportGetter"
 
-
 render(
-  <MediaProvider
-    getMedia={viewportGetter}
-    listener={viewportListener}>
-    <WrappedApp />
+  <MediaProvider getMedia={viewportGetter} listener={viewportListener}>
+    <ResponsiveApp />
   </MediaProvider>,
-  document.body.appendChild(document.createElement("div"))
+  targetEl
 )
 ```
 
-### func matchMedia([resolveComponent][, mergeProps])
+### matchMedia([resolveComponent][, mergeProps])
 
-#### args
+Connects a React component to the media data. It returns a new, connected
+component class (i.e., it does not modify the component class passed to it).
 
-- `resolveComponent(media, cb)`, function that resolves components to be passed as props. it can resolve it synchronously by returning the components, or asynchronously by calling `cb` with the resolved components
-- `mergeProps(ownProps, mediaProps, componentProps)`, function that merges props
+#### Arguments
 
-#### example
+- `resolveComponent(media, cb)` (*Function*): Resolves the component that will
+  receive props. Resolution is synchronous when returning a component, and
+  asynchronously when calling `cb` with the resolved component.
+- `mergeProps(ownProps, mediaProps, componentProps)` (*Function*): Custom prop merging
+
+#### Example
 
 ```javascript
 import React from "react"
-import { matchMedia } from "../../src"
+import { matchMedia } from "react-media-queries"
+import resolveComponentsSync from "./resolveComponentsSync"
 
 const App = ({ Component }) => (
   <div>
-    {Component ? <Component /> : "loading …"}
+    {Component ? <Component /> : "loading…"}
   </div>
 )
 
-const resolveComponents = ({ viewport }, cb) => {
-  return {
-    Component: viewport.width > 400 ? Big : Small,
-  }
-}
-
-const WrappedApp = matchMedia(resolveComponents)(App)
+const ResponsiveApp = matchMedia(resolveComponentsSync)(App)
 ```
 
-## listeners
-
-### composeListener (react-media-queries/lib/composeListeners)
-
-can be used to compose multiple listeners into one
-
-### viewportListener (react-media-queries/lib/viewportListener)
-
-listens to viewport size changes
-
-### createMediaQueryListener (react-media-queries/lib/createMediaQueryListener)
-
-listens to media query events
-
-#### example
+Synchronous resolver:
 
 ```javascript
+const resolveComponentsSync = ({ mediaQuery, viewport }, cb) => {
+  const isBig = mediaQuery.portrait.matches && (viewport.width > 400)
+  return {
+    Component: isBig ? require("./Big") : require("./Small"),
+  }
+}
+```
+
+Asynchronous resolver:
+
+```javascript
+const resolveComponentsAsync = ({ viewport }, cb) => {
+  if(viewport.width > 400) {
+    require.ensure([], () => {
+      cb({
+        Component: require("./Big"),
+      })
+    })
+  } else {
+    require.ensure([], () => {
+      cb({
+        Component: require("./Small"),
+      })
+    })
+  }
+}
+```
+
+## Listeners
+
+Listeners determine when media data needs to be recalculated. There are 2
+predefined listeners: `viewportListener` and `createMediaQueryListener`. Custom
+listeners are also supported.
+
+### viewportListener
+
+Listens to `resize` events on the `window`.
+
+```javascript
+import viewportListener from "react-media-queries/lib/viewportListener"
+```
+
+### createMediaQueryListener(mediaQueries: Object)
+
+Listens to `window.mediaMatch` events for the given Media Queries.
+
+```javascript
+import createMediaQueryListener from "react-media-queries/lib/createMediaQueryListener"
+
 const mediaQueries = {
   small: "(min-width:300px)",
   medium: "(min-width: 400px)",
   large: "(min-width: 500px)"
 }
 
-const listener = createMediaQueryListener(mediaQueries)
+const mediaQueryListener = createMediaQueryListener(mediaQueries)
 ```
 
-### creating your own listener
+### composeListener(...listeners)
 
-a listener is a function that one `update` function arguments. the listener
-should start listening to its event, and call `update` when it considers it
-needs to. this function should return a function that makes it stop listening
-for changes.
+Compose multiple listeners into one.
 
-#### example
+```javascript
+import composeListener from "react-media-queries/lib/composeListener"
+
+const listener = composeListener(viewportListener, mediaQueryListener)
+```
+
+### Creating your own listener
+
+A listener is a function that accepts an `update` function argument. The
+listener should start listening to its event, and call `update` when it
+considers it needs to. The listener should return a function that removes the
+change listener.
 
 ```javascript
 const debouncedViewportListener = (update) => {
@@ -107,41 +154,56 @@ const debouncedViewportListener = (update) => {
 }
 ```
 
-## getters
+## Getters
 
-### composeGetters (react-media-queries/lib/composeGetters)
+Getters determine what media data is provided to components. There are 2
+predefined getters: `viewportGetter` and `createMediaQueryGetter`. Custom
+getters are also supported.
 
-can be used to compose multiple getters into one
+### viewportGetter
 
-### viewportGetter (react-media-queries/lib/viewportGetter)
-
-gets the current viewport state
-
-### createMediaQueryGetter (react-media-queries/lib/createMediaQueryGetter)
-
-listens to media query events
-
-#### example
+Returns the current viewport dimensions in the form: `{ viewport: { height, width } }`
 
 ```javascript
+import viewportGetter from "react-media-queries/lib/viewportGetter"
+```
+
+### createMediaQueryGetter(mediaQueries: Object)
+
+Returns the current Media Query states in the form: `{ mediaQuery: { [alias]: {
+matches, media } } }`. `matches` is a boolean, `media` is the Media Query
+string represented by the alias.
+
+```javascript
+import createMediaQueryGetter from "react-media-queries/lib/createMediaQueryGetter"
+
 const mediaQueries = {
   small: "(min-width:300px)",
   medium: "(min-width: 400px)",
   large: "(min-width: 500px)"
 }
 
-const getter = createMediaQueryGetter(mediaQueries)
+const mediaQueryGetter = createMediaQueryGetter(mediaQueries)
 ```
 
-### creating your own getter
+### composeGetters(...getters)
 
-a getter should return an object with the current state at any point in time
+Compose multiple getters into one.
 
-#### example
+```javascript
+import composeGetter from "react-media-queries/lib/composeGetter"
+
+const getter = composeGetter(viewportGetter, mediaQueryGetter)
+```
+
+### Creating your own getter
+
+A getter must return an object representing the current state at that point in
+time.
 
 ```javascript
 const scrollGetter = () => ({
   scrollY: window.pageYOffset,
-  scrollX: window.pageXOffset,
+  scrollX: window.pageXOffset
 })
 ```
