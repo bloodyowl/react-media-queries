@@ -1,8 +1,8 @@
 import React from "react"
 import { render } from "react-dom"
 import { matchMedia, MediaProvider } from "../../src"
-import mediaQueryListener from "../../src/mediaQueryListener"
-import mediaQueryGetter from "../../src/mediaQueryGetter"
+import createMediaQueryListener from "../../src/createMediaQueryListener"
+import createMediaQueryGetter from "../../src/createMediaQueryGetter"
 
 import "./index.html"
 
@@ -27,8 +27,8 @@ const mediaQueries = {
 
 render(
   <MediaProvider
-    getMedia={() => mediaQueryGetter(mediaQueries)}
-    listener={(update) => mediaQueryListener(mediaQueries, update)}>
+    getMedia={createMediaQueryGetter(mediaQueries)}
+    listener={createMediaQueryListener(mediaQueries)}>
     <WrappedApp />
   </MediaProvider>,
   document.body.appendChild(document.createElement("div"))

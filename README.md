@@ -74,6 +74,22 @@ can be used to compose multiple listeners into one
 
 listens to viewport size changes
 
+### createMediaQueryListener (react-media-queries/lib/createMediaQueryListener)
+
+listens to media query events
+
+#### example
+
+```javascript
+const mediaQueries = {
+  small: "(min-width:300px)",
+  medium: "(min-width: 400px)",
+  large: "(min-width: 500px)"
+}
+
+const listener = createMediaQueryListener(mediaQueries)
+```
+
 ### creating your own listener
 
 a listener is a function that one `update` function arguments. the listener
@@ -100,6 +116,22 @@ can be used to compose multiple getters into one
 ### viewportGetter (react-media-queries/lib/viewportGetter)
 
 gets the current viewport state
+
+### createMediaQueryGetter (react-media-queries/lib/createMediaQueryGetter)
+
+listens to media query events
+
+#### example
+
+```javascript
+const mediaQueries = {
+  small: "(min-width:300px)",
+  medium: "(min-width: 400px)",
+  large: "(min-width: 500px)"
+}
+
+const getter = createMediaQueryGetter(mediaQueries)
+```
 
 ### creating your own getter
 
