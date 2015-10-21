@@ -24,9 +24,9 @@ const App = ({ Component }) => (
   </div>
 )
 
-const resolveComponents = ({ viewportWidth }, cb) => {
+const resolveComponents = ({ viewport }, cb) => {
   return {
-    Component: viewportWidth > 400 ? Big : Small,
+    Component: viewport.width > 400 ? Big : Small,
   }
 }
 

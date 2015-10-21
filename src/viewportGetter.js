@@ -1,7 +1,9 @@
 const viewportGetter = () => {
   return {
-    viewportWidth: window.innerWidth,
-    viewportHeight: window.innerHeight,
+    viewport: {
+      height: window.innerHeight,
+      width: window.innerWidth
+    }
   }
 }
 

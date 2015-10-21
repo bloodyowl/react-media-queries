@@ -16,6 +16,7 @@ const serverUrl = `${ location.protocol }${ location.host }:${ location.port }`
 const config = {
   entry: {
     "examples/simple/index": "./examples/simple/index.js",
+    "examples/media-query/index": "./examples/media-query/index.js",
     "examples/async-component-loading/index": "./examples/async-component-loading/index.js",
     "examples/sync-component-loading/index": "./examples/sync-component-loading/index.js",
     "examples/custom-listener/index": "./examples/custom-listener/index.js",

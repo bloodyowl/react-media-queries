@@ -12,8 +12,8 @@ const App = ({ Component }) => (
   </div>
 )
 
-const resolveComponents = ({ viewportWidth }, cb) => {
-  if(viewportWidth > 400) {
+const resolveComponents = ({ viewport }, cb) => {
+  if(viewport.width > 400) {
     require.ensure([], () => {
       cb({
         Component: require("./Big"),

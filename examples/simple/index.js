@@ -6,11 +6,11 @@ import viewportGetter from "../../src/viewportGetter"
 
 import "./index.html"
 
-const App = ({ viewportWidth, viewportHeight }) => (
+const App = ({ viewport }) => (
   <div>
     <ul>
-      <li>viewportWidth : {viewportWidth}</li>
-      <li>viewportHeight : {viewportHeight}</li>
+      <li>viewport.width : {viewport.width}</li>
+      <li>viewport.height : {viewport.height}</li>
     </ul>
   </div>
 )

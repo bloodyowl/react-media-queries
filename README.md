@@ -55,9 +55,9 @@ const App = ({ Component }) => (
   </div>
 )
 
-const resolveComponents = ({ viewportWidth }, cb) => {
+const resolveComponents = ({ viewport }, cb) => {
   return {
-    Component: viewportWidth > 400 ? Big : Small,
+    Component: viewport.width > 400 ? Big : Small,
   }
 }
 
@@ -97,7 +97,7 @@ const debouncedViewportListener = (update) => {
 
 can be used to compose multiple getters into one
 
-### viewportGetters (react-media-queries/lib/viewportGetter)
+### viewportGetter (react-media-queries/lib/viewportGetter)
 
 gets the current viewport state
 
