@@ -1,5 +1,7 @@
 # react-media-queries
 
+[![Build Status](https://travis-ci.org/bloodyowl/react-media-queries.svg?branch=master)](https://travis-ci.org/bloodyowl/react-media-queries)
+
 Extensible Media Queries for React.
 
 ## Install
