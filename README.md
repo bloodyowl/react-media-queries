@@ -227,3 +227,5 @@ const scrollGetter = () => ({
   scrollX: window.pageXOffset,
 })
 ```
+
+## [License](LICENSE)
