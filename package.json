@@ -6,7 +6,8 @@
   "files": [
     "lib",
     "package.json",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "start": "babel --stage 0 src --out-dir lib --ignore '__tests__'",
