@@ -99,6 +99,24 @@ const resolveComponentsAsync = ({ viewport }, cb) => {
 }
 ```
 
+You can also mix the synchronous approach with the asynchronous one, for instance if you have the mobile component in your bundle and want to lazy-load the desktop one if needed :
+
+```javascript
+const resolveComponentsAsync = ({ viewport }, cb) => {
+  if(viewport.width > 400) {
+    require.ensure([], () => {
+      cb({
+        Component: require("./Big"),
+      })
+    })
+  } else {
+    return {
+      Component: MobileComponent,
+    }
+  }
+}
+```
+
 ## Listeners
 
 Listeners determine when media data needs to be recalculated. There are 2
