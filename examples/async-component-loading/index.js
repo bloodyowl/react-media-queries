@@ -19,22 +19,22 @@ const resolveComponents = ({ viewport }, cb) => {
         Component: require("./Big"),
       })
     })
-    return
-  }
-  require.ensure([], () => {
-    cb({
-      Component: require("./Small"),
+  } else {
+    require.ensure([], () => {
+      cb({
+        Component: require("./Small"),
+      })
     })
-  })
+  }
 }
 
-const WrappedApp = matchMedia(resolveComponents)(App)
+const ResponsiveApp = matchMedia(resolveComponents)(App)
 
 render(
   <MediaProvider
     getMedia={viewportGetter}
     listener={viewportListener}>
-    <WrappedApp />
+    <ResponsiveApp />
   </MediaProvider>,
   document.body.appendChild(document.createElement("div"))
 )
