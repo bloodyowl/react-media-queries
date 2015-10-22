@@ -7,7 +7,7 @@ const defaultMergeProps = (ownProps, mediaProps, componentProps) => {
     let key = getCollidingKey(ownProps, mediaProps, componentProps)
     if(key) {
       warning(
-        true,
+        false,
         "colliding key %s in props merge",
         key
       )
