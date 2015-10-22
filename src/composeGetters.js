@@ -3,7 +3,7 @@ const composeGetters = (...getters) => {
     (acc, func) => {
       return {
         ...acc,
-        ...func()
+        ...func(),
       }
     },
     {}

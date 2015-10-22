@@ -161,7 +161,7 @@ tape("matchMedia async resolve component", (test) => {
     test.deepEqual(media, initialMedia, "receives media correctly")
     setTimeout(() => {
       cb({
-        asyncValue: 1
+        asyncValue: 1,
       })
     }, 100)
     return {

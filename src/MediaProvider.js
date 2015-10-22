@@ -28,7 +28,7 @@ class MediaProvider extends Component {
     }
     this.removeListener = listener(() =>
       this.setState({
-        mediaQuery: getMedia()
+        mediaQuery: getMedia(),
       })
     )
   }

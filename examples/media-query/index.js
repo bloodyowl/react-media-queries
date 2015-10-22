@@ -10,9 +10,15 @@ const App = ({ mediaQuery }) => (
   <div>
     mediaQuery is:
     <ul>
-      <li>small {mediaQuery.small.media}: {`${mediaQuery.small.matches}`}</li>
-      <li>medium {mediaQuery.medium.media}: {`${mediaQuery.medium.matches}`}</li>
-      <li>large {mediaQuery.large.media}: {`${mediaQuery.large.matches}`}</li>
+      <li>
+        small {mediaQuery.small.media}: {`${mediaQuery.small.matches}`}
+      </li>
+      <li>
+        medium {mediaQuery.medium.media}: {`${mediaQuery.medium.matches}`}
+      </li>
+      <li>
+        large {mediaQuery.large.media}: {`${mediaQuery.large.matches}`}
+      </li>
     </ul>
   </div>
 )
@@ -22,7 +28,7 @@ const WrappedApp = matchMedia()(App)
 const mediaQueries = {
   small: "(min-width:300px)",
   medium: "(min-width: 400px)",
-  large: "(min-width: 500px)"
+  large: "(min-width: 500px)",
 }
 
 render(

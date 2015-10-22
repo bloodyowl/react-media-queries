@@ -141,7 +141,7 @@ import createMediaQueryListener from "react-media-queries/lib/createMediaQueryLi
 const mediaQueries = {
   small: "(min-width:300px)",
   medium: "(min-width: 400px)",
-  large: "(min-width: 500px)"
+  large: "(min-width: 500px)",
 }
 
 const mediaQueryListener = createMediaQueryListener(mediaQueries)
@@ -198,7 +198,7 @@ import createMediaQueryGetter from "react-media-queries/lib/createMediaQueryGett
 const mediaQueries = {
   small: "(min-width:300px)",
   medium: "(min-width: 400px)",
-  large: "(min-width: 500px)"
+  large: "(min-width: 500px)",
 }
 
 const mediaQueryGetter = createMediaQueryGetter(mediaQueries)
@@ -222,6 +222,6 @@ time.
 ```javascript
 const scrollGetter = () => ({
   scrollY: window.pageYOffset,
-  scrollX: window.pageXOffset
+  scrollX: window.pageXOffset,
 })
 ```
