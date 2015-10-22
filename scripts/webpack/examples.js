@@ -20,6 +20,8 @@ const config = {
     "examples/async-component-loading/index": "./examples/async-component-loading/index.js",
     "examples/sync-component-loading/index": "./examples/sync-component-loading/index.js",
     "examples/custom-listener/index": "./examples/custom-listener/index.js",
+    "examples/responsive-navigation/index": "./examples/responsive-navigation/index.js",
+    "index": "./examples/index.js",
   },
   output: {
     path: path.join(__dirname, "../../dist"),
@@ -58,7 +60,11 @@ const server = new WebpackDevServer(webpack(config), {
 
 server.listen(
   location.port,
-  location.host
+  location.host,
+  () => {
+    console.log(`open ${ serverUrl }/examples in your browser`)
+  }
 )
+
 
 export default config

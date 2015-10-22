@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "start": "babel --stage 0 src --out-dir lib --ignore '__tests__'",
-    "lint": "eslint src/** && eslint examples/**",
+    "lint": "eslint src/**.js && eslint examples/**.js",
     "examples": "babel-node --stage 0 ./scripts/webpack/examples",
     "test": "npm run lint && babel-node --stage 0 ./scripts/webpack/test.js"
   },
@@ -44,6 +44,7 @@
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-test-utils": "0.0.1",
+    "stile": "^1.0.0",
     "tape": "^4.2.1",
     "tape-catch": "^1.0.4",
     "webpack": "^1.12.2",
