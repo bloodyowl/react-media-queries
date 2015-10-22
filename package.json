@@ -38,6 +38,7 @@
     "file-loader": "^0.8.4",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
+    "react-test-utils": "0.0.1",
     "tape": "^4.2.1",
     "tape-catch": "^1.0.4",
     "webpack": "^1.12.2",
